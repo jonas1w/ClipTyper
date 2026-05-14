@@ -8,8 +8,8 @@ A lightweight, portable Windows tool that types clipboard text as simulated keyb
 
 | Variante | Beschreibung | .NET Runtime nötig? | Download |
 |---|---|---|---|
-| **Portable** | Enthält die .NET Runtime – läuft sofort überall | ❌ Nein | **[ClipTyper-Portable.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Portable.exe)** |
-| **Slim** | Kleinere Datei, benötigt installierte .NET 8 Runtime | ✅ [Runtime installieren](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) | **[ClipTyper-Slim.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Slim.exe)** |
+| **Portable** | Single `.exe` mit .NET Runtime – läuft sofort überall | ❌ Nein | **[ClipTyper-Portable.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Portable.exe)** |
+| **Slim** | Zip-Archiv (~1 MB), benötigt installierte .NET 8 Runtime | ✅ [Runtime installieren](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) | **[ClipTyper-Slim.zip](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Slim.zip)** |
 
 > 💡 **Unsicher welche Version?** Nimm **Portable** – die funktioniert auf jedem Windows 10/11 (x64) ohne weitere Installation.
 
@@ -55,11 +55,11 @@ Before typing begins, all modifier keys (Ctrl, Shift, Alt) are programmatically 
 git clone https://github.com/unpaved028/ClipTyper.git
 cd ClipTyper
 
-# Portable (self-contained, compressed)
-dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true
+# Portable (self-contained, single-file, compressed)
+dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 
-# Slim (framework-dependent, requires .NET 8 runtime)
-dotnet publish -c Release -r win-x64 --self-contained false /p:PublishSingleFile=true
+# Slim (framework-dependent, requires .NET 8 Desktop Runtime)
+dotnet publish -c Release --self-contained false
 ```
 
 Requires [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) for building.

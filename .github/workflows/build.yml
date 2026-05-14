@@ -1,4 +1,4 @@
-name: Build & Release ClipTyper
+﻿name: Build & Release ClipTyper
 
 on:
   push:
@@ -23,16 +23,16 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Publish self-contained
-        run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true -o ./publish-selfcontained
+        run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true -o ./publish-selfcontained
 
       - name: Rename self-contained exe
         run: Rename-Item ./publish-selfcontained/ClipTyper.exe ClipTyper-Portable.exe
 
       - name: Publish framework-dependent
-        run: dotnet publish -c Release -r win-x64 --self-contained false /p:PublishSingleFile=true -o ./publish-slim
+        run: dotnet publish -c Release --self-contained false -o ./publish-slim
 
-      - name: Rename framework-dependent exe
-        run: Rename-Item ./publish-slim/ClipTyper.exe ClipTyper-Slim.exe
+      - name: Create slim zip
+        run: Compress-Archive -Path ./publish-slim/* -DestinationPath ./ClipTyper-Slim.zip
 
       - name: Upload self-contained artifact
         uses: actions/upload-artifact@v4
@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ClipTyper-Slim
-          path: ./publish-slim/ClipTyper-Slim.exe
+          path: ./ClipTyper-Slim.zip
 
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
@@ -53,4 +53,4 @@ jobs:
           generate_release_notes: true
           files: |
             ./publish-selfcontained/ClipTyper-Portable.exe
-            ./publish-slim/ClipTyper-Slim.exe
+            ./ClipTyper-Slim.zip
