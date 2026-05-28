@@ -32,3 +32,6 @@ prompts/
 AGENTS.md
 CLAUDE.md
 DEPLOY.md
+
+# WinGet Manifests
+winget-manifest/

@@ -21,10 +21,10 @@ dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=
 #### Slim (framework-dependent, requires .NET 8 Desktop Runtime)
 dotnet publish -c Release -r win-x64 --self-contained false /p:PublishSingleFile=true
 
-The resulting ClipTyper.exe will be located in the \bin\Release\net8.0-windows\win-x64\publish\ directory.
+The resulting ClipTyper.exe will be located in the `bin/Release/net8.0-windows/win-x64/publish/` directory.
 
 ## 🚀 Pull Requests
-Fork the repository and create your branch from main.
+Fork the repository and create your branch from master.
 
 Keep your changes focused. If you are adding a new feature, please explain the use case in your PR.
 

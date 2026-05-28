@@ -4,14 +4,21 @@ A lightweight, portable Windows tool that types clipboard text as simulated keyb
 
 **Why?** Some environments block `Ctrl+V` paste (Remote Desktops, KVM consoles, web-based terminals, restricted VMs). ClipTyper bypasses this by simulating real keystrokes via the Windows `SendInput` API.
 
-## ⬇️ Download
+## ⬇️ Download & Installation
 
-| Variante | Beschreibung | .NET Runtime nötig? | Download |
+### Windows Package Manager (WinGet)
+You can install the portable version of ClipTyper directly from your terminal:
+```cmd
+winget install unpaved028.ClipTyper
+```
+
+### Manual Download
+| Variant | Description | .NET Runtime Required? | Download |
 |---|---|---|---|
-| **Portable** | Single `.exe` mit .NET Runtime – läuft sofort überall | ❌ Nein | **[ClipTyper-Portable.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Portable.exe)** |
-| **Slim** | Single `.exe` (~1 MB), benötigt installierte .NET 8 Runtime | ✅ [Runtime installieren](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) | **[ClipTyper-Slim.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Slim.exe)** |
+| **Portable** | Single `.exe` self-contained with .NET Runtime – runs instantly anywhere | ❌ No | **[ClipTyper-Portable.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Portable.exe)** |
+| **Slim** | Single `.exe` (~1 MB), requires installed .NET 8 Runtime | ✅ [Install Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) | **[ClipTyper-Slim.exe](https://github.com/unpaved028/ClipTyper/releases/latest/download/ClipTyper-Slim.exe)** |
 
-> 💡 **Unsicher welche Version?** Nimm **Portable** – die funktioniert auf jedem Windows 10/11 (x64) ohne weitere Installation.
+> 💡 **Not sure which version to choose?** Grab **Portable** — it works out of the box on any Windows 10/11 (x64) without requiring any pre-installed framework.
 
 ## Features
 
