@@ -98,34 +98,10 @@ namespace ClipTyper
 
         private void OnSetDelay(object? sender, EventArgs e)
         {
-            using var form = new Form()
-            {
-                Width = 270,
-                Height = 130,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = "Set Paste Delay",
-                StartPosition = FormStartPosition.CenterScreen,
-                MaximizeBox = false,
-                MinimizeBox = false
-            };
-            var label = new Label() { Left = 20, Top = 20, Text = "Delay (seconds):", AutoSize = true };
-            var textBox = new TextBox() { Left = 120, Top = 18, Width = 100, Text = PasteDelaySeconds.ToString() };
-            var button = new Button() { Text = "OK", Left = 120, Top = 50, Width = 100, DialogResult = DialogResult.OK };
-            form.Controls.Add(label);
-            form.Controls.Add(textBox);
-            form.Controls.Add(button);
-            form.AcceptButton = button;
-
+            using var form = new SetDelayForm(PasteDelaySeconds);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (int.TryParse(textBox.Text, out int result) && result >= 0)
-                {
-                    PasteDelaySeconds = result;
-                }
-                else
-                {
-                    MessageBox.Show("Invalid delay. Please enter a valid number of seconds.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                PasteDelaySeconds = form.DelaySeconds;
             }
         }
 
